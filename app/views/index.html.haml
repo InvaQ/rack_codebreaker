@@ -1,3 +1,23 @@
-%div.form
-  %input{placeholder:"Enter Your name"}
-  %button.btn.btn-primary Login
+%html
+  %title Codebreaker
+  %body.container
+    %link{rel: :stylesheet, type: :"text/css", href: "https://fonts.googleapis.com/css?family=Bungee+Shade"}    
+    %link{rel: :stylesheet, type: :"text/css", href: "assets/application.css"}
+    %h1
+      %br Wellcome to
+      %em C
+      %em o
+      %em d
+      %em e
+      %em B
+      %em r
+      %em.symbol.left e
+      %em a
+      %em k
+      %em.symbol.right e
+      %em r
+  .login
+    %h2     
+      %form.form{action:"/new_player", method: "post"}
+        %input{name: "player", placeholder:"Enter Your name", type: "text"}
+        %input{ value: 'Login', type: "submit" }

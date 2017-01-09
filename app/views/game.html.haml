@@ -1,0 +1,43 @@
+%html
+  %head
+    %title Codebreaker
+    %meta{:charset => "utf-8"}
+    %link{rel: :stylesheet, type: :"text/css", href: "assets/application.css"}    
+  %body.container-game
+    - if @game.game_over?
+      You lose!
+    -else
+      %p Now, #{@request.session[:player][session_data(:name)]} try to break me !
+
+      .form
+        %form{action:"/check_guess", method: "post"}
+          %input{name: "guess", placeholder:"Enter Your guess", type: "text"}
+          %input{ value: 'Check', type: "submit" }
+      %ul.list        
+        %li.info Tries left #{@game.tries_left}        
+        %li.info= @request.session[:hint]
+        %li.info Your last guess was #{@request.session[:guess]}
+        %li.info Answer: #{@request.session[:try][session_data(:guess)]}
+        %li.info Answer: #{@request.session[:try]}
+  .btn-list      
+    %ul
+      %a{href: '/hint'}
+        %button.action-btn get hint
+      %a{href: '/rules'}
+        %button.action-btn rules
+      %a{href: '/save'}
+        %button.action-btn save
+      %a{href: '/show_statistics'}
+        %button.action-btn stats              
+      %a{href: '/play_again'}
+        %button.action-btn play again
+    %table    
+      %tr.list
+        %th Guess
+        %th Answer
+      - @request.session[:try].each_pair do |guess, answer|
+        %tr
+          %td.info= guess
+          %td.info= answer
+
+

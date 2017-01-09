@@ -1,18 +1,10 @@
-body {
-  background-color: #4B7399;
-  font-family: Verdana;
+.container,.container-game {
+  //background: url("http://www.planwallpaper.com/static/images/518079-background-hd.jpg");
+  //http://cdn.wallpapersafari.com/65/91/Xj2g8l.jpg
+  //http://www.eilatfilmfest.com/img/bank_vault_3d_wallpaper-hd.jpg
+  //http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/dark_wall.png
+  //https://wallpaperscraft.com/image/black_light_dark_figures_73356_1920x1080.jpg
+  background: url("http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/dark_wall.png");
+  font-family: Oswald;
   font-size: 14px;
-}
-
-#container {
-  width: 75%;
-  margin: 0 auto;
-  background-color: #FFF;
-  padding: 20px 40px;
-  border: solid 1px black;
-  margin-top: 20px;
-}
-
-a {
-  color: #0000FF;
 }
