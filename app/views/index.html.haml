@@ -1,6 +1,6 @@
 %html
   %title Codebreaker
-  %body.container
+  %body
     %link{rel: :stylesheet, type: :"text/css", href: "https://fonts.googleapis.com/css?family=Bungee+Shade"}    
     %link{rel: :stylesheet, type: :"text/css", href: "assets/application.css"}
     %h1
@@ -18,6 +18,6 @@
       %em r
   .login
     %h2     
-      %form.form{action:"/new_player", method: "post"}
+      %form{action:"/new_player", method: "post"}
         %input{name: "player", placeholder:"Enter Your name", type: "text"}
         %input{ value: 'Login', type: "submit" }

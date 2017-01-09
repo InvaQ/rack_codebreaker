@@ -1,0 +1,20 @@
+%html
+  %head
+    %meta{charset: "utf-8"}/
+    %title Codebreaker stat
+    %link{:rel => :stylesheet, :type => :"text/css", :href => "assets/application.css"}
+  %body
+    .table-title
+      %h3 Players Statistics
+    %table.table-fill      
+      %tbody.table-hover
+        -show_stat.each do |stat|
+          %tr
+            %td.text-left=stat[0]
+            %td.text-left=stat[1]     
+            
+        
+
+    %br
+    %a{href: '/game'}
+      %button.action-btn back

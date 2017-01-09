@@ -1,0 +1,8 @@
+---
+- 'Name: bob'
+- - 'hints: 1'
+  - 'tries: 2'
+---
+- 'Name: John Doe'
+- - 'hints: 1'
+  - 'tries: 2'

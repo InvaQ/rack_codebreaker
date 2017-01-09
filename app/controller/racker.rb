@@ -27,15 +27,20 @@ class Racker
       when '/check_guess' then check_guess
       when '/play_again' then play_again
       when '/save' then save_score
-      when 'show_statistics' then render('statistics')
+      when '/show_statistics' then render('statistics')
     else Rack::Response.new('Not Found', 404)
     end
   end
   
   def session_data(data)
     @request.session[data]
-  end  
+  end
 
+  def show_stat
+    YAML::load_stream(File.open('score.yaml'))    
+  end
+
+private
   def render(template)
     path = File.read("app/views/#{template}.html.haml")
     page = Haml::Engine.new(path).render(binding)
@@ -50,12 +55,10 @@ class Racker
 
   def start_game
     @request.session[:game] ||= Codebreaker::Game.new
-    #binding.pry
   end
 
   def hint
     @request.session[:hint] = @game.get_hint
-    #binding.pry
     redirect_to('/game')
   end
 
@@ -77,14 +80,13 @@ class Racker
   end
 
   def save_score
-    path = File.open('score.yml', 'a')
+    path = File.open('score.yaml', 'a')
     write_data(path)
     redirect_to('/game')
   end
 
   def write_data(file)
     buffer = ["Name: #{@request.session[:player][session_data(:name)]}", ["hints: #{@game.hints}", "tries: #{@game.tries_used}"]]
-    binding.pry       
     file.write buffer.to_yaml       
   end
 

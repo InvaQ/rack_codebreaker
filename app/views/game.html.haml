@@ -1,26 +1,10 @@
 %html
   %head
     %title Codebreaker
-    %meta{:charset => "utf-8"}
+    %meta{charset: "utf-8"}
     %link{rel: :stylesheet, type: :"text/css", href: "assets/application.css"}    
-  %body.container-game
-    - if @game.game_over?
-      You lose!
-    -else
-      %p Now, #{@request.session[:player][session_data(:name)]} try to break me !
-
-      .form
-        %form{action:"/check_guess", method: "post"}
-          %input{name: "guess", placeholder:"Enter Your guess", type: "text"}
-          %input{ value: 'Check', type: "submit" }
-      %ul.list        
-        %li.info Tries left #{@game.tries_left}        
-        %li.info= @request.session[:hint]
-        %li.info Your last guess was #{@request.session[:guess]}
-        %li.info Answer: #{@request.session[:try][session_data(:guess)]}
-        %li.info Answer: #{@request.session[:try]}
-  .btn-list      
-    %ul
+  %body
+    %nav
       %a{href: '/hint'}
         %button.action-btn get hint
       %a{href: '/rules'}
@@ -31,13 +15,33 @@
         %button.action-btn stats              
       %a{href: '/play_again'}
         %button.action-btn play again
-    %table    
-      %tr.list
-        %th Guess
-        %th Answer
-      - @request.session[:try].each_pair do |guess, answer|
-        %tr
-          %td.info= guess
-          %td.info= answer
+    .notification      
+      - if @game.tries_left.zero?
+        You lose!
+      - elsif @request.session[:try][session_data(:guess)] == '++++'
+        Congratulation! You Win!
+      -else
+        Now #{@request.session[:player][session_data(:name)]}, try to break me!
+    -unless @game.game_over?
+      .container-game      
+        .form
+          %form{action:"/check_guess", method: "post"}
+            %input{name: "guess", placeholder:"Enter Your guess", type: "text"}
+            %input{ value: 'Check', type: "submit" }
+      .info
+        %ul       
+          %li.info Tries left #{@game.tries_left}        
+          %a.info= @request.session[:hint]
+          %li.info Your last guess was #{@request.session[:guess]}
+          %li.info Answer: #{@request.session[:try][session_data(:guess)]}
+        
+        %table.table-fill
+          %tr
+            %th Guess
+            %th Answer
+          - @request.session[:try].each_pair do |guess, answer|
+            %tr
+              %td= guess
+              %td= answer
 
 
