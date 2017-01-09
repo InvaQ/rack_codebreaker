@@ -1,7 +1,7 @@
 require 'sprockets'
-
 $LOAD_PATH.unshift File.expand_path('../app', __FILE__)
 require 'controller/racker'
+
 use Rack::Reloader
 assets = Sprockets::Environment.new do |env|
   

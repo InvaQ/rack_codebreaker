@@ -1,4 +1,3 @@
-#require 'erb'
 require 'haml'
 require 'codebreaker'
 require 'yaml'
