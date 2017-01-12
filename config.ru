@@ -3,8 +3,7 @@ $LOAD_PATH.unshift File.expand_path('../app', __FILE__)
 require 'controller/racker'
 
 use Rack::Reloader
-assets = Sprockets::Environment.new do |env|
-  
+assets = Sprockets::Environment.new do |env|  
   env.append_path 'app/assets/stylesheets'
   env.css_compressor = :scss
 end
